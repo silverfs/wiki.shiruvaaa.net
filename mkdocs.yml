@@ -1,9 +1,26 @@
-site_name: obsidian-mkdocs template
+site_name: Shiruvaaa's Wiki
+repo_name: 'Github'
+repo_url: https://github.com/silverfs/wiki.shiruvaaa.net
+site_author: Shiruvaaa
+site_description: Welcome to my personal wiki, where I store all my findings, manuals and so forth! When I learn something new, I'll do my best to write it down here. 
+copyright: All content on this website is subjected to copyright by Shiruvaaa &copy; 2021 – 2023
+
 
 theme:
+    logo: assets/img/catblush.png
+    favicon: assets/img/catblush.ico
     name: 'material'
-    palette:
+    features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
 
+    palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -25,12 +42,14 @@ theme:
 # Extensions
 markdown_extensions:
   - footnotes
-  # - attr_list
+  - smarty
+  - admonition
+  - nl2br
+  - attr_list
   - pymdownx.arithmatex:
       generic: true
-  # - pymdownx.superfences
   # - pymdownx.details
-  # - pymdownx.magiclink
+  - pymdownx.magiclink
   - pymdownx.tasklist:
       custom_checkbox: true
   - def_list
@@ -39,18 +58,33 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.saneheaders
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      code_attr_on_pre: true
+      language_prefix: true
+      use_pygments: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+          linenums: true
 
   - toc:
       permalink: true
 
 plugins:
   - search
-  - roamlinks 
+  - roamlinks
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+  - glightbox:
+      touchNavigation: true
+      effect: fade
 
 
 extra_javascript:
@@ -58,3 +92,18 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://unpkg.com/mermaid/dist/mermaid.min.js 
+
+
+extra:
+  consent:
+    title: Cookie consent 🍪
+    actions:
+      - reject
+      - accept
+      - manage
+    description: >- 
+      We use cookies to make connections to services like Github in order to provide cool links and visuals. <br>
+      Click on "Manage settings" to view what this wiki connects to.
+
+extra_css:
+  - assets/css/extra.css
