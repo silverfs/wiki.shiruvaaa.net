@@ -11,6 +11,7 @@ theme:
     favicon: assets/img/catblush.ico
     name: 'material'
     features:
+    - content.code.copy
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
@@ -80,7 +81,7 @@ plugins:
   - search
   - roamlinks
   - git-revision-date-localized:
-      enable_creation_date: true
+      enable_creation_date: false
       type: timeago
   - glightbox:
       touchNavigation: true
