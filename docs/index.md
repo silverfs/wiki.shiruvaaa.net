@@ -15,4 +15,4 @@ Consider visiting my [personal website](https://shiruvaaa.net/), or my [Story hu
 <br>
 
 !!! info
-	If you like what you are reading and want something published here (or you want to write it yourself), just let me know on [Discord](https://discordid.netlify.app/?id=296302114794373121) or [Github](https://github.com/silverfs).
+	If you like what you are reading and want something published here (or you want to write it yourself), just let me know on [Discord](https://discordid.netlify.app/?id=296302114794373121) or [Github](https://github.com/silverfs/wiki.shiruvaaa.net).
