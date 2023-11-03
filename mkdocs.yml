@@ -10,7 +10,10 @@ nav:
   - Home:
     - index.md
     - The Docker Handguide: docker/index.md
-    - Windows Tips & Tricks: tips-and-tricks/windows/index.md
+    - Windows Tips & Tricks: manuals/windows/tips-and-tricks/index.md
+    - Cheat Sheets:
+      - Git in 5 Minutes: cheat-sheets/git in 5 minutes.md
+      - Markdown Template : cheat-sheets/markdown template.md
   - The Docker Handguide:
     - docker/index.md
     - docker/the basics of docker and virtualization.md
@@ -19,17 +22,17 @@ nav:
       - docker/installation methods.md
       - docker/cool FOSS projects.md
   - Windows Tips & Tricks:
-    - tips-and-tricks/windows/index.md
+    -  manuals/windows/tips-and-tricks/index.md
     - Windows 11 Specific:
-      - tips-and-tricks/windows/win11/install without internet.md
-      - tips-and-tricks/windows/win11/install without bloatware.md
+      - manuals/windows/tips-and-tricks/win11/install without internet.md
+      - manuals/windows/tips-and-tricks/win11/install without bloatware.md
     - Privacy First:
-      - tips-and-tricks/windows/privacy first/simple search.md
+      - manuals/windows/tips-and-tricks/privacy first/simple search.md
     - Tools & Tweaks:
-      - tips-and-tricks/windows/tools and tweaks/powertoys.md
-      - tips-and-tricks/windows/tools and tweaks/winaero tweaker.md
+      - manuals/windows/tips-and-tricks/tools and tweaks/powertoys.md
+      - manuals/windows/tips-and-tricks/tools and tweaks/winaero tweaker.md
     - System & Administration:
-      - tips-and-tricks/windows/system and administration/reset windows passwords with an install disk.md
+      - manuals/windows/tips-and-tricks/system and administration/reset windows passwords with an install disk.md
 
 
 theme:
