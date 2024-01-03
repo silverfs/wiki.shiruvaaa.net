@@ -1,0 +1,1751 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Welcome to my personal wiki, where I store all my findings, manuals and so forth! When I learn something new, I'll do my best to write it down here.">
+      
+      
+        <meta name="author" content="Shiruvaaa">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/img/catblush.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>An Introduction to Cryptography - Shiruvaaa's Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#an-introduction-to-cryptography" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Shiruvaaa&#39;s Wiki" class="md-header__button md-logo" aria-label="Shiruvaaa's Wiki" data-md-component="logo">
+      
+  <img src="../../assets/img/catblush.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shiruvaaa's Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              An Introduction to Cryptography
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/silverfs/wiki.shiruvaaa.net" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docker/" class="md-tabs__link">
+          
+  
+    
+  
+  The Docker Handguide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../manuals/windows/tips-and-tricks/" class="md-tabs__link">
+          
+  
+    
+  
+  Windows Tips & Tricks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md - rabbit-holes/index.md - rabbit-holes/cryptography.md" class="md-tabs__link">
+        
+  
+    
+  
+  Down The Rabbit Hole
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Shiruvaaa&#39;s Wiki" class="md-nav__button md-logo" aria-label="Shiruvaaa's Wiki" data-md-component="logo">
+      
+  <img src="../../assets/img/catblush.png" alt="logo">
+
+    </a>
+    Shiruvaaa's Wiki
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/silverfs/wiki.shiruvaaa.net" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Docker Handguide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows Tips & Tricks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Cheat Sheets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Cheat Sheets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheat-sheets/git%20in%205%20minutes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git in 5 Minutes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheat-sheets/markdown%20template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown Template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docker/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    The Docker Handguide
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            The Docker Handguide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/the%20basics%20of%20docker%20and%20virtualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Basics of Docker and Virtualization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/what%20is%20docker%20swarm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Docker Swarm?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    In-Depth
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            In-Depth
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/installation%20methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/cool%20FOSS%20projects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cool (FOSS) Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../manuals/windows/tips-and-tricks/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Windows Tips & Tricks
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Windows Tips & Tricks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Windows 11 Specific
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Windows 11 Specific
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/win11/install%20without%20internet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation Without Needing An Internet Connection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/win11/install%20without%20bloatware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows 11 Installation Without Bloatware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Privacy First
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Privacy First
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/privacy%20first/simple%20search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tools & Tweaks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tools & Tweaks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/tools%20and%20tweaks/powertoys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Powertoys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/tools%20and%20tweaks/winaero%20tweaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Winaero Tweaker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    System & Administration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            System & Administration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/windows/tips-and-tricks/system%20and%20administration/reset%20windows%20passwords%20with%20an%20install%20disk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reset Windows Passwords with an Install Disk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md - rabbit-holes/index.md - rabbit-holes/cryptography.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Down The Rabbit Hole
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aes" class="md-nav__link">
+    <span class="md-ellipsis">
+      AES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-encryption-using-a-generated-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Encryption Using a generated key
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modes-of-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of Operation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#afterword" class="md-nav__link">
+    <span class="md-ellipsis">
+      Afterword
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="an-introduction-to-cryptography">An Introduction to Cryptography<a class="headerlink" href="#an-introduction-to-cryptography" title="Permanent link">&para;</a></h1>
+<p>In this research document, I will discuss some cryptographic principles and practices to understand encryption. I will be demonstrating some examples by making use of the <a href="https://cryptography.io">Cryptography library</a> in Python.</p>
+<p>Firstly, I would like to discuss the most standard encryption algorithms to this date: AES, RSA, ECC, and SHA (for hashing). I will include the inner workings and provide examples with best practices.</p>
+<h2 id="aes">AES<a class="headerlink" href="#aes" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.geeksforgeeks.org/advanced-encryption-standard-aes/">AES</a> stands for <em>Advanced Encryption Standard</em> and is a symmetric encryption algorithm, meaning the same key is used for both encryption and decryption. It is a secure and pretty fast encryption algorithm, if implemented correctly. </p>
+<p><strong>How it works</strong></p>
+<p>AES is a block cipher, which is an algorithm that operates on fixed-length groups of bits, called blocks. The key-size of AES can be 128/192/256 bits, but it encrypts data using 128 bit-sized blocks, which is equivalent to 16 bytes. This means that it can use these 3 lengths of bits as an input, and outputs encrypted cipher text with a bit-length of 16 bytes (128 bits). </p>
+<p>Why exactly is encrypting using a bit length of 256 better in terms of security, but slower than a 128-bit length? Let&rsquo;s break that down.</p>
+<p>The security of AES encryption depends on the size of the key space, which is determined by the bit length of the key. As I mentioned before, the key-size of AES can be 128, 192, or 256 bits long. A 128-bit key provides 2¹²⁸ possible combinations, while a 256-bit key provides 2²⁵⁶ possible combinations, which, in theory, makes it stronger to e.g. brute-force attacks. <br />
+The reason why it takes longer to encrypt/de-crypt a 256-bit length key, is because a longer key length needs more complex mathematical operations, so it takes longer to compute a larger key in comparison to a shorter one. </p>
+<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
+<h4 id="key-generation">Key Generation<a class="headerlink" href="#key-generation" title="Permanent link">&para;</a></h4>
+<p>I will elaborate the theory by providing an example written in Python with the Encryption module. We will operate with <code>hazmat</code>, the hazardous materials of the cryptography library. In its most basic form, cryptography uses <a href="https://cryptography.io/en/latest/fernet/">Fernet</a>, but to use different kinds of encryption methods, one needs to dive into the hazmat section, as implementations made with these functions are more prone to being implemented wrongly. With that out of the way, let&rsquo;s get started.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">hashes</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.kdf.pbkdf2</span> <span class="kn">import</span> <span class="n">PBKDF2HMAC</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">ef</span> <span class="n">generate_aes_key</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">salt</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="c1"># Generate random salt</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Salt:&quot;</span><span class="p">,</span> <span class="n">salt</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">kdf</span> <span class="o">=</span> <span class="n">PBKDF2HMAC</span><span class="p">(</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="n">algorithm</span><span class="o">=</span><span class="n">hashes</span><span class="o">.</span><span class="n">SHA256</span><span class="p">(),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>        <span class="n">length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="c1"># 256 bits (here 32 bytes) for AES-256</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>        <span class="n">salt</span><span class="o">=</span><span class="n">salt</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>        <span class="n">iterations</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> 
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>        <span class="n">backend</span><span class="o">=</span><span class="n">default_backend</span><span class="p">()</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="n">key</span> <span class="o">=</span> <span class="n">kdf</span><span class="o">.</span><span class="n">derive</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="k">return</span> <span class="n">key</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="c1"># Example</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;secure_password&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="n">aes_key</span> <span class="o">=</span> <span class="n">generate_aes_key</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AES Key:&quot;</span><span class="p">,</span> <span class="n">aes_key</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Firstly we create a randomly generated salt using 16 bytes as the length. The salt is used as an additional input to increase the security of key derivation to ensure that the derived key is unique, even if the same password is used multiple times. </p>
+<p>Next, we use PBKDF2HMAC (Password-Based Key Derivation Function 2 Hash Message Authentication Code), which is a password-based <a href="https://en.wikipedia.org/wiki/Key_derivation_function">Key derivation function</a> in combination with the integrity and authenticity assurance of HMAC. PBKDF2HMAC is then used in combination with the SHA-256 hash algorithm to derive a secure AES key from a password.<br />
+AES-256 requires a 256-bit key, so a 32-byte key is suitable (16 bytes is equivalent to a 128-bit sized key). The key derivation function is responsible for producing a key of the desired size. <br />
+Finally, <code>iterations=100000</code> means that the underlying hash function (SHA-256 in this case) will be applied 100000 times to derive the final key. Multiple iterations slow down key derivation, adding computational expense for attackers attempting brute-force or dictionary attacks, and thus more protected against brute-force or dictionary attacks.</p>
+<p>In the example part, PBKDF2 is used with SHA-256 as the hash function to derive a secure AES key from a password.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>&gt;<span class="w"> </span>pipenv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>aes.py
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>Salt:<span class="w"> </span>b<span class="s1">&#39;\x02\xbc\xb7x\x1c**4O\xf4\xad\xf3\x1c|\xb1\xfa&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>pbkdf2hmac<span class="w"> </span>key:<span class="w">  </span>b<span class="s1">&#39;\x1aTEoNa\x030M\xa3\xf1s,$\x9a\\M\xa8\xbf\xa08J\x9a\xe3\xc5\x00\x19CC\xe4\x0f/&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>password:<span class="w">  </span>secure_password
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>AES<span class="w"> </span>Key:<span class="w"> </span>b<span class="s1">&#39;\x1aTEoNa\x030M\xa3\xf1s,$\x9a\\M\xa8\xbf\xa08J\x9a\xe3\xc5\x00\x19CC\xe4\x0f/&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>But in this part, we only created a key from the password. We have yet to encrypt something using our generated key. </p>
+<h4 id="message-encryption-using-a-generated-key">Message Encryption Using a generated key<a class="headerlink" href="#message-encryption-using-a-generated-key" title="Permanent link">&para;</a></h4>
+<p>In the first part, the <code>generate_aes_key(password)</code> is used to derive an AES key from the password as an input. The resulting key is then used in the encryption part that comes next. </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span> <span class="nf">aes_encrypt</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">ECB</span><span class="p">(),</span> <span class="n">backend</span><span class="o">=</span><span class="n">default_backend</span><span class="p">())</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">encryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encryptor</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span> <span class="o">+</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="k">return</span> <span class="n">ciphertext</span>
+</code></pre></div></td></tr></table></div>
+<p>In the function above, we&rsquo;ll try to encrypt a message, in this case a plain-text string. In the first line of the function, <code>cipher</code> starts with specifying the the AES algorithm through the <code>Cipher</code> class with the <code>key</code> as an input. This key is in the return line of the key generation function in the first part of our experiment. </p>
+<p><strong>AES encryption modes</strong></p>
+<p>Next, it specifies in which mode of operation AES should run. In this case, it&rsquo;s &lsquo;ECB&rsquo;. <br />
+As I mentioned before, AES operates on fixed-size blocks of 128 bits of data  (16 bytes). ECB stands for Electronic CodeBook. </p>
+<p>From <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_(ECB)"><em>Wikipedia</em></a>:</p>
+<blockquote>
+<p>&ldquo;The simplest (and not to be used anymore) of the encryption modes is the <strong>electronic codebook</strong> (ECB) mode (named after conventional physical <a href="https://en.wikipedia.org/wiki/Codebook" title="Codebook">codebooks</a>). The message is divided into blocks, and each block is encrypted separately.&rdquo;</p>
+</blockquote>
+<p>!!!  caution<br />
+    Although it is generally not recommended to use this mode of encryption due to its lack of variability and it not being suitable for encrypting data in general any longer, I will use it as a simplified approach to showcase how cipher blocks work. <br><br />
+    The ECB method lacks diffusion (hiding the plaintext statistics by spreading it over a larger area of ciphertext). Because ECB encrypts identical plaintext blocks of data into identical ciphertext blocks as mentioned earlier, it does not hide patterns well, making it not recommended for use in cryptographic protocols.</p>
+<p>Writing it down is one thing, but to truly understand, you&rsquo;ll have to experience it for yourself. </p>
+<hr />
+<p>So, we&rsquo;ll take a detour for a moment and convert our Python encryption block above to something that shows ECB blocks step by step:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.ciphers</span> <span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">padding</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="k">def</span> <span class="nf">aes_encrypt_ecb_debug</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">):</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">ECB</span><span class="p">(),</span> <span class="n">backend</span><span class="o">=</span><span class="n">default_backend</span><span class="p">())</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>    <span class="n">encryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encryptor</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="c1"># Padding the plaintext</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="n">padder</span> <span class="o">=</span> <span class="n">padding</span><span class="o">.</span><span class="n">PKCS7</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="o">.</span><span class="n">block_size</span><span class="p">)</span><span class="o">.</span><span class="n">padder</span><span class="p">()</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">padded_plaintext</span> <span class="o">=</span> <span class="n">padder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span> <span class="o">+</span> <span class="n">padder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="n">ciphertext_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="c1"># Encrypt each block independently</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">padded_plaintext</span><span class="p">),</span> <span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="o">.</span><span class="n">block_size</span><span class="p">):</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>        <span class="n">block</span> <span class="o">=</span> <span class="n">padded_plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="o">.</span><span class="n">block_size</span><span class="p">]</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="n">encrypted_block</span> <span class="o">=</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="n">ciphertext_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encrypted_block</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>        <span class="c1"># Print intermediate results</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Block </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="o">.</span><span class="n">block_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> plaintext: </span><span class="si">{</span><span class="n">block</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Block </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="o">.</span><span class="n">block_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> ciphertext: </span><span class="si">{</span><span class="n">encrypted_block</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>        <span class="nb">print</span><span class="p">()</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ciphertext_blocks</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="c1"># Example usage</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="n">key</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;Sixteen byte key&#39;</span>  <span class="c1"># 128-bit key for AES-128</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="n">plaintext</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;Hello. This is plaintext for my ECB AES walkthrough! Lets make our string longer so we can have more blocks. Those sentences were not enough, so let us add one more.&#39;</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="n">encrypted_data</span> <span class="o">=</span> <span class="n">aes_encrypt_ecb_debug</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">)</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="c1"># Print the final result</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final Encrypted Data:&quot;</span><span class="p">,</span> <span class="n">encrypted_data</span><span class="o">.</span><span class="n">hex</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<p>in the example above, we start with the same start of the function by providing the Cipher algorithm and the encryption mode for AES.</p>
+<p><strong>The use of padding</strong></p>
+<p>Next, we add some padding. Padding, specifically in the context of of encryption, is a process of adding extra bits to a piece of data to make it fit a specific block size. But why should we need it?  </p>
+<p>AES in ECB mode operates on fixed-size blocks of data. Let&rsquo;s say we take in 128-bit size blocks for AES, but the provided plaintext cannot divide itself evenly over 128-bit sized blocks, it needs extra padding to make up for the length.</p>
+<p>So, If the length of the plaintext is a multiple of the block size, it means that the length can be divided evenly into complete blocks without any remainder. If it&rsquo;s not a multiple, there will be a remainder when dividing by the block size and padding might be needed. </p>
+<p>Let&rsquo;s say the block size is 16 bytes (128 bits). A plaintext length of either, 16, 32, 48, and so on, would be a multiple of the block size. If the plaintext is not a multiple, additional padding ensures that the last block is filled to make it a multiple. In our example above, we use the padding standard scheme PKCS#7. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The word &ldquo;plaintext&rdquo; consists of 9 characters. Typically - assuming ASCII or UTF-8 encoding - each character typically requires 1 byte. <br />
+In this case, the word &ldquo;plaintext&rdquo; would be 9 bytes long. <br><br />
+In the context of AES with a block siz of 128 bits (16 bytes) is a length of 9 bytes not a multiple of 16. We need additional padding to make up for it. <br><br />
+PKCS#7 adds bytes equal to the number of bytes needed for padding. For &ldquo;plaintext&rdquo;, it would look like this: <br><br />
+<code>"plaintext\x07\x07\x07\x07\x07\x07\x07"</code> <br><br />
+<code>\x07</code> represents the number of padding bytes (7 bytes) to make the total length a multiple of 16 bytes. <br />
+<br></p>
+</div>
+<p>Padding is not always needed. In cases where padding introduces issues or it needs to be implemented and used in a more simpler way, methods like Ciphertext Stealing (CTS) can be used. CTS is <em>&ldquo;a method of using a block cipher mode of operation that allows for processing of messages that are not evenly divisible into blocks without resulting in any expansion of the ciphertext, at the cost of slightly increased complexity&rdquo;</em>, which means that it can encrypt a plaintext block without padding the message to a multiple of the block size. So, instead of adding extra padding to fill up the block, this method &ldquo;steals&rdquo; some ciphertext from the previous block to complete the last one. </p>
+<hr />
+<p>Now that we know that padding is needed, we add it to the script as in our example above.</p>
+<p>After that, a for-loop is introduced which iterates over blocks of the padded plaintext using the block size of AES with ECB, which in this case is 16 bytes. </p>
+<p><code>block = padded_plaintext[i:i + algorithms.AES.block_size]</code> extracts a block of data from the padded plaintext. It starts with <code>i</code> and includes the next AES block size bytes. <br />
+Next, the current block is encrypted using AES. This, of course, happens block per block. After encryption of the current block, it appends the encrypted block to a list called <code>ciphertext_blocks</code>. </p>
+<p>After that, it tries to print the hexadecimal representation of the current plaintext block, and the ciphertext (encrypted) block below it.<br />
+It repeats this process until no further blocks are found. </p>
+<p>After the loop ends, <code>return b''.join(ciphertext_blocks)</code> is used to concatenate (or simply join them together) into the final encrypted data, which is printed as well. </p>
+<p>At the end, we add the sixteen byte key and a plaintext worthy of having 2 blocks. The output looks somewhat like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span>
+<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>&gt;<span class="w"> </span>pipenv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>aes_ecb.py
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>&gt;<span class="w"> </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>Block<span class="w"> </span><span class="m">1</span><span class="w"> </span>plaintext:<span class="w"> </span>48656c6c6f2e205468697320697320706c61696e7465787420666f72206d7920454342204145532077616c6b7468726f75676821204c657473206d616b65206f757220737472696e67206c6f6e67657220736f2077652063616e2068617665206d6f726520626c6f636b732e2054686f73652073656e74656e63657320776572
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>Block<span class="w"> </span><span class="m">1</span><span class="w"> </span>ciphertext:<span class="w"> </span>734326e08f5d4c2927597d492740efb622fe74e49044ce0228cc5353196578067269781e02250a10afbb3807897f1867daba7b3273f30b620bc5df4a5537975cc66c8d47304b3043b553500d6fbc7fe4e9f1d24e4ca73660d3c8a18a4e34c0616b7a3edbfebb0bee6bbe8a7f219c0c7793c625471d92238bec618f659b482e53
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>Block<span class="w"> </span><span class="m">2</span><span class="w"> </span>plaintext:<span class="w"> </span>65206e6f7420656e6f7567682c20736f206c657420757320616464206f6e65206d6f72652e0b0b0b0b0b0b0b0b0b0b0b
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>Block<span class="w"> </span><span class="m">2</span><span class="w"> </span>ciphertext:<span class="w"> </span>79b906b7c49bf211867ee1322ed4c5f19dc302a8ce376db53f10f2335d63cd5f3ab99134759ed851844a9e6a4244d14b
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>Final<span class="w"> </span>Encrypted<span class="w"> </span>Data:<span class="w"> </span>734326e08f5d4c2927597d492740efb622fe74e49044ce0228cc5353196578067269781e02250a10afbb3807897f1867daba7b3273f30b620bc5df4a5537975cc66c8d47304b3043b553500d6fbc7fe4e9f1d24e4ca73660d3c8a18a4e34c0616b7a3edbfebb0bee6bbe8a7f219c0c7793c625471d92238bec618f659b482e5379b906b7c49bf211867ee1322ed4c5f19dc302a8ce376db53f10f2335d63cd5f3ab99134759ed851844a9e6a4244d14b
+</code></pre></div></td></tr></table></div>
+<p>Interestingly, Block 2 has a lot of <code>0b</code>s in its plaintext. <code>0b</code> is hexadecimal, and represents the number 11. this means that 11 bytes of padding were added. The padding in this plaintext is identified as the last 11 bytes, represented as <code>0b0b0b0b0b0b0b0b0b0b0b</code>. <br />
+In the encrypted data below it, nothing is left of the appended padding on the plaintext. </p>
+<p>The final encrypted data is shown in a hexadecimal format, and will always be the same. ECB mode does not provide semantic security, and the same plaintext blocks will always produce the same ciphertext blocks, hence the lack of variability explained earlier.</p>
+<hr />
+<h3 id="modes-of-operation">Modes of Operation<a class="headerlink" href="#modes-of-operation" title="Permanent link">&para;</a></h3>
+<p>Now is a good time to talk about operation modes. As discussed prior in the AES segment, ECB is one such mode, but not secure in the slightest. Taken from the same Wikipedia page: <em>&ldquo;The purpose of cipher modes is to mask patterns which exist in encrypted data.&rdquo;</em><br />
+If ECB is not capable of masking in a secure way, than what modes are? </p>
+<p>CBC (cipher block chaining) is one of the most widely used mode of operation. However, it still has its drawbacks. 2 of them are as follows: the use of sequential encryption and that messages must be padded to a multiple of the block size, just like ECB. <br />
+Like ECB, CBC makes use of sequential encryption, which refers to encrypting data in a linear manner; typically, one block of data at a time. As seen in the examples above, data is typically divided into fixed-sized blocks, and the encryption of one block is dependent on the encryption of the previous block. However, even if ECB and CBC both use sequential encryption, they are fundamentally different. In ECB mode, each block is encrypted with the exact same key, whereas with CBC, each block is <a href="https://www.pcmag.com/encyclopedia/term/xor">XORed</a> with the ciphertext of the previous block before encryption. This is called a chaining mechanism and should provide better diffusion than not using chaining at all. </p>
+<p>Obviously, the opposite variant is parallel encryption, which encrypts multiple blocks of data simultaneously.<br />
+The most obvious bonus point is its speed of encryption. However, it might be more suitable for multi-thread architectures as it needs to exploit parallel processing power. </p>
+<p>Parallel encryption is not necessarily more secure than sequential encryption, if implemented correctly. Both have its advantages and concerns. Parallel encryption for example, may have faster processing times, but might introduce new vulnerabilities because it is less tested than sequential encryption in e.g. CBC mode.</p>
+<p>There exist many different modes and variants, with each their own advantages, use-cases, and drawbacks. </p>
+<hr />
+<h2 id="rsa">RSA<a class="headerlink" href="#rsa" title="Permanent link">&para;</a></h2>
+<p>RSA stands for &ldquo;Rivest-Shamir-Adleman&rdquo;, which are the 3 last names of the founders of this method of encryption. RSA is a cryptographic system that involves a public and a private key. The public key is used for encryption, and the private key is used for decryption. </p>
+<p><strong>How it works</strong></p>
+<p>RSA makes use of a private key and a public key. When presenting 2 parties - call them Alice and Bob - each of them has their own private and public keys. The private key is obviously private to its own party, but the public key can be shared to anyone. Unless implemented badly, messages encrypted using the public key can only be decrypted with the private key.</p>
+<p>RSA encryption is not typically used to directly encrypt large messages. Encrypting something using a public/private key pair is usually done to confirm the authenticity of the content. You cannot encrypt a lot of information with the RSA encryption technique, but you can encrypt a large message content separately using AES.</p>
+<p>So, encrypting something using a public/private key pair like RSA, is commonly employed for ensuring the authenticity and confidentiality of the content. However, due to the computational cost associated with asymmetric encryption algorithms like RSA, they are not as efficient for encrypting large amounts of data directly.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<h2 id="afterword">Afterword<a class="headerlink" href="#afterword" title="Permanent link">&para;</a></h2>
+<p>Honestly speaking, this topic is incredibly difficult to understand, and I am sure I missed a lot of key parts on how certain mechanics work. However, diving too deep into this rabbit hole is not the main purpose of this assignment, and will only worsen my understanding of this topic at this point in time. With that being said, I think this is a very interesting subject, but it requires a significant amount of time in order to research this, as there is a lot to discuss. I hope I provided some entry-level explanations on cryptography in this document.</p>
+<hr />
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>NIST&rsquo;s Cryptographic Hash functions, encryption algorithms, and keys - <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf</a> (page 40) </li>
+<li>The concept of AES and its use of operation modes - <a href="https://crypto.stackexchange.com/questions/57645/is-using-the-same-iv-in-aes-similar-to-not-using-an-iv-in-the-first-place/57648#57648">https://crypto.stackexchange.com/questions/57645/is-using-the-same-iv-in-aes-similar-to-not-using-an-iv-in-the-first-place/57648#57648</a></li>
+<li>Information about ECB - <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_(ECB">https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_(ECB</a>)</li>
+<li>Information about CBC - <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC">https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC</a>)</li>
+<li>AES/ECB mode with padding and its security- <a href="https://stackoverflow.com/questions/10531932/aes-ecb-mode-requires-padding-how-come-we-have-this-aes-ecb-nopadding-then">https://stackoverflow.com/questions/10531932/aes-ecb-mode-requires-padding-how-come-we-have-this-aes-ecb-nopadding-then</a></li>
+<li>Using padding in encryption modes and its usage recommendations - <a href="https://crypto.stackexchange.com/questions/71365/why-does-a-padding-block-exist-for-ecb-and-cbc-modes">https://crypto.stackexchange.com/questions/71365/why-does-a-padding-block-exist-for-ecb-and-cbc-modes</a></li>
+<li>Information about CTS - <a href="https://en.wikipedia.org/wiki/Ciphertext_stealing">https://en.wikipedia.org/wiki/Ciphertext_stealing</a></li>
+<li>Information about RSA - <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)</li>
+<li>More information about RSA - <a href="https://www.youtube.com/watch?v=ZPXVSJnDA_A">https://www.youtube.com/watch?v=ZPXVSJnDA_A</a></li>
+</ul>
+<p>Key size selection rsa - <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf</a> (page 65)</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-03T23:15:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-03</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      All content on this website is subjected to copyright by Shiruvaaa &copy; 2021 – 2024
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+
+<h4>Cookie consent 🍪</h4>
+<p>We use cookies to make connections to services like Github in order to provide cool links and visuals. <br> Click on "Manage settings" to view what this wiki connects to.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../assets/js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});})</script></body>
+</html>
