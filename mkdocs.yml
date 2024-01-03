@@ -32,10 +32,10 @@ nav:
       - manuals/windows/tips-and-tricks/tools and tweaks/powertoys.md
       - manuals/windows/tips-and-tricks/tools and tweaks/winaero tweaker.md
     - System & Administration:
-      - manuals/windows/tips-and-tricks/system and administration/reset windows passwords with an install disk.md
-  - Down The Rabbit Hole: rabbit-holes/index.md
-      - rabbit-holes/index.md
-      - rabbit-holes/cryptography.md
+      - manuals/windows/tips-and-tricks/system and administration/reset windows passwords with an install disk.md  
+  - Down The Rabbit Hole:
+    - rabbit-holes/index.md
+    - rabbit-holes/cryptography.md
 
 
 theme:
