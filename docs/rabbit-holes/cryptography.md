@@ -260,15 +260,169 @@ RSA encryption is not typically used to directly encrypt large messages. Encrypt
 
 So, encrypting something using a public/private key pair like RSA, is commonly employed for ensuring the authenticity and confidentiality of the content. However, due to the computational cost associated with asymmetric encryption algorithms like RSA, they are not as efficient for encrypting large amounts of data directly.
 
+### Testing
+
+```python
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.asymmetric import rsa
+
+# Key generation
+private_key = rsa.generate_private_key(
+    public_exponent=65537,
+    key_size=2048,
+    backend=default_backend()
+)
+
+public_key = private_key.public_key()
+
+# Serialization
+private_pem = private_key.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption()
+)
+
+public_pem = public_key.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
+
+print("Private Key:\n", private_pem.decode())
+print("Public Key:\n", public_pem.decode())
+```
 
 
 
+#### Key Generation
+
+The private key is the main part of RSA and is generated using a public exponent, a key size and a backend. 
+
+A public exponent is a typically small, odd prime number in the form of an integer. This public exponent is used in the public key, which is employed for the encryption process.
+
+The commonly used public exponent in RSA, 65537, is a [Fermat prime number](https://en.wikipedia.org/wiki/Fermat_number). Fermat primes are a special class of prime numbers that have the form `2 to the power of 2 to the power of n + 1`. In the case of 65537, it is the result of 2[^16]+1.
+A  is a prime number with 2 bits. Some common Fermat primes are 3, 5, 17, 257, and 65537. The number 65537 is used simply because it is believed that there does not exist a higher Fermat prime number. Fermat is used because it simplifies the exponentiation operation, which is how we calculate the numbers using Fermat. 
+
+65537 is also often chosen because it has a low Hamming weight. The Hamming weight a binary string is the count of the number of non-zero bits, or literally "1" bits. The Hamming weight of the binary string "1101" is 3. With this logic, our integer 65537, which is `0000 0000 0000 0000 0001 0000 0000 0000 0001` in binary, has a Hamming weight of 2, which is reasonably low; it makes modular exponentiation more efficient.
+
+Aside from the public exponent, we need to specify a key size. As explained in the AES part, longer key sizes provide higher security, but they also increase the computational cost of cryptographic operations. In many cases, a key size of 2048 is considered a standard and quite common, because of its balance between security and computation efficiency. While a 2048 key size is valid until 2030, there are more and more cases where 4096 as a key size is use. 
+
+
+The second part is where serialization happens. Serialization is the process of converting the private key into a format that can be easily stored and transmitted. The private key is stored in the `.pem` format (Privacy Enhanced Mail). It is a text-based encoding format used for encoding cryptographic objects like RSA keys. 
+PKCS#8 is private key syntax format. PKCS#8 private keys can be encrypted using a passphrase, however, In our example, no encryption is applied to keep it in the code and not manually resort to files. Some examples on when this could be done is e.g. in SSH keys. 
+
+The same is done in the public key part. The only difference being is what information is being shown. A public key certificate needs less information, so specific data is omitted. 
+
+
+Printing these out will result in the following private key:
+
+
+```
+Private Key:
+ -----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDQ/SIIGAS2E7ds
+ezOKW/5cXlv/mJRlGHEo3RRKBuT1xUtGa3GARQVVYc62OnQDTqmVszCVuBWfUrXp
+EWjxK2tpVUbrKieD0mBaRjHg+S4PSt9Ad63ZwejFDvsDnhxRd90tNteOeTNAzoYe
+K4MdDhJbVztwi+oF3MTd/acmSg7FQ10OpiP9hs7NkqdFvUFux2uEyDb3HfMENug3
+90tUy1xSeT06mnUx4PC7WK52YdXKyI0hHjxQ28OFypRPnREiiKDvPK/0/k04MZII
+jPu6tDjhqIiLSRwDPCllGElQEyrfer1qNeNlCtAhZNeu8FlCor5PPouKxAPcT1VT
+wDHsM5ihAgMBAAECggEAJDLMK7m5Sy5UFYKrdTok7yva5IUxouceZpUQeBgEnXtM
+ZAilMrIBz/2ud8rdIFuGLStJ7YzileOWJaYB1tAN/UMrkv0Mth0A2nIRHqYab8So
+sbppDvAy2LsVCFXhEs1frn6yzHc6xO1gtqYTwjsXO+H6pi5d3SEVqlvOkWe/cjQ9
+/+cmYwxTscJU4Mb5NLf1rjIDydY2YukkcBQxQ2TvQYOT2jAbAoJp/MUtC1L0LJ4y
+iXVH3eZgTE4LA6RGf/GCx5pG02kN/49/+Ag0bbFmNdhRHfhnkKcE57KFX+JgqwSf
+sjejB1vf8ZWax1U/tvNilUZakxeHutn5wh+cYHmSKQKBgQD3qEfT3LKENcCjvwfC
+ViS0ntJL+bQfkcjW68MTeVH/m6VDM9Wwyu1QD+JOlB5R5EFhwofdsuByW1EBzLgB
+TR3rhp/dMZKYk3dWErwLi14op+8GTzkxecrtJtIVR3+S4m7NAl1xa9ZB5L5KcOAm
+gwXcRhDj71dZ4Tw+rFx6KQmwTQKBgQDYB2MNveCN4vO53l9NgtopOPtRzANVPiRt
+Wa0IhL7dQyDZNQkBXn8RNjjBUfP2eYljJgfml0F1+mW96JwDMDMz8iJJxDlZUPJP
+L2YkyjpQska1TB5nsx3eyFQX/fuOwXf+GS0iTu2OCO0hroHh2YL7KqLCg1NAdlQO
+/sVBbfxTpQKBgDiNF6G8MpNYBt4dP/NTYlxQK+snYMcYrgjNmyT2PhAlBW68Bl6x
+Z9ExX1bcIbRHb9qX5hhswS27xlqn2ZiKeHuQqS6EJFpsygJAkun78AtOlZkWPBQd
+IIZYp/4t7manB/AOSzIcErfHOOCct8JzhsIOycqSm5qtgOk6yH8oocq9AoGBALn+
+Oik1pqViliccLv+EPqKpPbAiL2hv9Vr0j4a7C71is2BvSg6UtmAyR9Eh5yL5ZvEn
+aDv/VEvoRzqnj9Mq55q8yQqr2BhvGgBVNeNM/cJGi5xCKhdsXrZV0hlKAhDZv57V
+PEfCnsLgKpIKNicmZ6AqCDHicYYZmqvCbEC2Gj5FAoGAV2iNYk59Tmn1H6NmLkbK
+9/0WLVZUaXlNxQjDY8qZvBh8mjMCJ22dw8HrOSpfmKCnBIbEfJdJq96cBLsSJJpE
+UAFBQxtgulqyxxE6bymT/mgl/tC/8R9bf0UVj/OL9s0QW3tBHV/VwiriB6X2ZXhw
+2uUI9L2pKFETYYRFuI9S6Vc=
+-----END PRIVATE KEY-----
+```
+
+And a public key that we can distribute. 
+
+```
+Public Key:
+ -----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0P0iCBgEthO3bHszilv+
+XF5b/5iUZRhxKN0USgbk9cVLRmtxgEUFVWHOtjp0A06plbMwlbgVn1K16RFo8Str
+aVVG6yong9JgWkYx4PkuD0rfQHet2cHoxQ77A54cUXfdLTbXjnkzQM6GHiuDHQ4S
+W1c7cIvqBdzE3f2nJkoOxUNdDqYj/YbOzZKnRb1BbsdrhMg29x3zBDboN/dLVMtc
+Unk9Opp1MeDwu1iudmHVysiNIR48UNvDhcqUT50RIoig7zyv9P5NODGSCIz7urQ4
+4aiIi0kcAzwpZRhJUBMq33q9ajXjZQrQIWTXrvBZQqK+Tz6LisQD3E9VU8Ax7DOY
+oQIDAQAB
+-----END PUBLIC KEY-----
+```
+
+
+All in all, RSA is a solid cryptographic mechanism that is widely used in different kinds of environments, and thus standardized.  Furthermore, it's dependency on difficult mathematical security is very beneficial, making it more resistant to all kinds of attacks.  
 
 
 
+---
 
 
+## ECC
 
+Elliptic Curve Cryptography (ECC) is another type of cryptographic method that uses the mathematics of elliptic curves to secure communication. It involves generating public and private key pairs just like RSA, but based on points on these curves, making it computationally efficient compared to other traditional methods. 
+ECC can be used for key exchange and digital signatures in protocols like [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) and [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). Despite using shorter key lengths, ECC provides robust security, and its resistance to quantum attacks makes it a valuable choice for secure communication and authentication in various applications. But how does this work?
+
+First, let's talk about elliptic curves. 
+> Elliptic curves in cryptography specifically is an approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields, as quoted by Wikipedia. I don't want to get too much into Elliptic curves and finite fields as they go more in-depth in mathematics, which isn't my strongest point. 
+
+Elliptic curves in cryptography are in many cases used by combining a key agreement and a symmetric encryption scheme. The use of elliptic curves is a bit of a controversy, considering that it was included as a NIST standard due to the influence of NSA. In 2013, which was around 7 years after wide spread of the use of elliptic curves in cryptography, RSA security recommended its customers discontinue using software based on a specific method in elliptic curves called "Dual_EC_DRBG" due to an exposure of this as "an NSA undercover operation", including many other cryptography experts agreeing on non-elliptic curve groups being preferential over elliptic curve based encryption. 
+
+### Testing
+
+```python
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.backends import default_backend
+
+# Generating ECC key pair
+private_key = ec.generate_private_key(ec.SECP256R1(), default_backend())
+public_key = private_key.public_key()
+
+# Serializing
+public_pem = public_key.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
+
+print("Public Key:\n", public_pem.decode())
+
+# Signing message
+message = b"Hello, ECC!"
+signature = private_key.sign(message, ec.ECDSA())
+
+print("Signature:", signature.hex())
+
+# Verifying signature
+try:
+    public_key.verify(signature, message, ec.ECDSA())
+    print("Signature is valid.")
+except Exception as e:
+    print("Signature is invalid:", e)
+
+```
+
+
+In the beginning, an ECC key pair is generated using the SECP256R1 elliptic curve.
+
+
+## SHA
+
+We've come across SHA multiple times in now, and now is the time for a deep-dive. 
 
 
 ## Conclusion
@@ -292,7 +446,16 @@ Honestly speaking, this topic is incredibly difficult to understand, and I am su
 - Information about CTS - https://en.wikipedia.org/wiki/Ciphertext_stealing
 - Information about RSA - https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 - More information about RSA - https://www.youtube.com/watch?v=ZPXVSJnDA_A
+- Key size selection RSA - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf (page 65)
+- Information about Hamming weight: https://en.wikipedia.org/wiki/Hamming_weight
+- Public exponentiation: https://crypto.stackexchange.com/questions/22437/rsa-public-key-exponent-generation-confusion and https://stackoverflow.com/questions/6098381/what-are-common-rsa-sign-exponent
+- Information about known Fermat primes: https://crypto.stackexchange.com/questions/3110/impacts-of-not-using-rsa-exponent-of-65537
+- RSA key size standards: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-78-5.ipd.pdf
+- PKCS#8: https://en.wikipedia.org/wiki/PKCS_8
+- Information about ECC: https://en.wikipedia.org/wiki/Elliptic-curve_cryptography
+- Information about Elliptic curves: https://en.wikipedia.org/wiki/Elliptic-curve_cryptography
+- RSA Security as a company: https://en.wikipedia.org/wiki/RSA_Security
+- 
 
 
 
-Key size selection rsa - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf (page 65)
