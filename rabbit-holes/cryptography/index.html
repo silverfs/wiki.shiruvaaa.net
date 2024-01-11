@@ -1353,6 +1353,69 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="RSA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-generation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ECC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ECC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sha" class="md-nav__link">
+    <span class="md-ellipsis">
+      SHA
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1485,6 +1548,69 @@
   <a href="#rsa" class="md-nav__link">
     <span class="md-ellipsis">
       RSA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RSA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-generation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ECC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ECC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sha" class="md-nav__link">
+    <span class="md-ellipsis">
+      SHA
     </span>
   </a>
   
@@ -1780,6 +1906,221 @@ The most obvious bonus point is its speed of encryption. However, it might be mo
 <p>RSA makes use of a private key and a public key. When presenting 2 parties - call them Alice and Bob - each of them has their own private and public keys. The private key is obviously private to its own party, but the public key can be shared to anyone. Unless implemented badly, messages encrypted using the public key can only be decrypted with the private key.</p>
 <p>RSA encryption is not typically used to directly encrypt large messages. Encrypting something using a public/private key pair is usually done to confirm the authenticity of the content. You cannot encrypt a lot of information with the RSA encryption technique, but you can encrypt a large message content separately using AES.</p>
 <p>So, encrypting something using a public/private key pair like RSA, is commonly employed for ensuring the authenticity and confidentiality of the content. However, due to the computational cost associated with asymmetric encryption algorithms like RSA, they are not as efficient for encrypting large amounts of data directly.</p>
+<h3 id="testing_1">Testing<a class="headerlink" href="#testing_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">rsa</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1"># Key generation</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">private_key</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="n">generate_private_key</span><span class="p">(</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="n">public_exponent</span><span class="o">=</span><span class="mi">65537</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="n">key_size</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="n">backend</span><span class="o">=</span><span class="n">default_backend</span><span class="p">()</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="n">public_key</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">public_key</span><span class="p">()</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="c1"># Serialization</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="n">private_pem</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">private_bytes</span><span class="p">(</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="n">encoding</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">PEM</span><span class="p">,</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="nb">format</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">PrivateFormat</span><span class="o">.</span><span class="n">PKCS8</span><span class="p">,</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="n">encryption_algorithm</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">NoEncryption</span><span class="p">()</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="n">public_pem</span> <span class="o">=</span> <span class="n">public_key</span><span class="o">.</span><span class="n">public_bytes</span><span class="p">(</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>    <span class="n">encoding</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">PEM</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a>    <span class="nb">format</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">PublicFormat</span><span class="o">.</span><span class="n">SubjectPublicKeyInfo</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Private Key:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">private_pem</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Public Key:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">public_pem</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="key-generation_1">Key Generation<a class="headerlink" href="#key-generation_1" title="Permanent link">&para;</a></h4>
+<p>The private key is the main part of RSA and is generated using a public exponent, a key size and a backend. </p>
+<p>A public exponent is a typically small, odd prime number in the form of an integer. This public exponent is used in the public key, which is employed for the encryption process.</p>
+<p>The commonly used public exponent in RSA, 65537, is a <a href="https://en.wikipedia.org/wiki/Fermat_number">Fermat prime number</a>. Fermat primes are a special class of prime numbers that have the form <code>2 to the power of 2 to the power of n + 1</code>. In the case of 65537, it is the result of 2[^16]+1.<br />
+A  is a prime number with 2 bits. Some common Fermat primes are 3, 5, 17, 257, and 65537. The number 65537 is used simply because it is believed that there does not exist a higher Fermat prime number. Fermat is used because it simplifies the exponentiation operation, which is how we calculate the numbers using Fermat. </p>
+<p>65537 is also often chosen because it has a low Hamming weight. The Hamming weight a binary string is the count of the number of non-zero bits, or literally &ldquo;1&rdquo; bits. The Hamming weight of the binary string &ldquo;1101&rdquo; is 3. With this logic, our integer 65537, which is <code>0000 0000 0000 0000 0001 0000 0000 0000 0001</code> in binary, has a Hamming weight of 2, which is reasonably low; it makes modular exponentiation more efficient.</p>
+<p>Aside from the public exponent, we need to specify a key size. As explained in the AES part, longer key sizes provide higher security, but they also increase the computational cost of cryptographic operations. In many cases, a key size of 2048 is considered a standard and quite common, because of its balance between security and computation efficiency. While a 2048 key size is valid until 2030, there are more and more cases where 4096 as a key size is use. </p>
+<p>The second part is where serialization happens. Serialization is the process of converting the private key into a format that can be easily stored and transmitted. The private key is stored in the <code>.pem</code> format (Privacy Enhanced Mail). It is a text-based encoding format used for encoding cryptographic objects like RSA keys. <br />
+PKCS#8 is private key syntax format. PKCS#8 private keys can be encrypted using a passphrase, however, In our example, no encryption is applied to keep it in the code and not manually resort to files. Some examples on when this could be done is e.g. in SSH keys. </p>
+<p>The same is done in the public key part. The only difference being is what information is being shown. A public key certificate needs less information, so specific data is omitted. </p>
+<p>Printing these out will result in the following private key:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>Private Key:
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a> -----BEGIN PRIVATE KEY-----
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDQ/SIIGAS2E7ds
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>ezOKW/5cXlv/mJRlGHEo3RRKBuT1xUtGa3GARQVVYc62OnQDTqmVszCVuBWfUrXp
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>EWjxK2tpVUbrKieD0mBaRjHg+S4PSt9Ad63ZwejFDvsDnhxRd90tNteOeTNAzoYe
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>K4MdDhJbVztwi+oF3MTd/acmSg7FQ10OpiP9hs7NkqdFvUFux2uEyDb3HfMENug3
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>90tUy1xSeT06mnUx4PC7WK52YdXKyI0hHjxQ28OFypRPnREiiKDvPK/0/k04MZII
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>jPu6tDjhqIiLSRwDPCllGElQEyrfer1qNeNlCtAhZNeu8FlCor5PPouKxAPcT1VT
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>wDHsM5ihAgMBAAECggEAJDLMK7m5Sy5UFYKrdTok7yva5IUxouceZpUQeBgEnXtM
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>ZAilMrIBz/2ud8rdIFuGLStJ7YzileOWJaYB1tAN/UMrkv0Mth0A2nIRHqYab8So
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>sbppDvAy2LsVCFXhEs1frn6yzHc6xO1gtqYTwjsXO+H6pi5d3SEVqlvOkWe/cjQ9
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>/+cmYwxTscJU4Mb5NLf1rjIDydY2YukkcBQxQ2TvQYOT2jAbAoJp/MUtC1L0LJ4y
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>iXVH3eZgTE4LA6RGf/GCx5pG02kN/49/+Ag0bbFmNdhRHfhnkKcE57KFX+JgqwSf
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>sjejB1vf8ZWax1U/tvNilUZakxeHutn5wh+cYHmSKQKBgQD3qEfT3LKENcCjvwfC
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>ViS0ntJL+bQfkcjW68MTeVH/m6VDM9Wwyu1QD+JOlB5R5EFhwofdsuByW1EBzLgB
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>TR3rhp/dMZKYk3dWErwLi14op+8GTzkxecrtJtIVR3+S4m7NAl1xa9ZB5L5KcOAm
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>gwXcRhDj71dZ4Tw+rFx6KQmwTQKBgQDYB2MNveCN4vO53l9NgtopOPtRzANVPiRt
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>Wa0IhL7dQyDZNQkBXn8RNjjBUfP2eYljJgfml0F1+mW96JwDMDMz8iJJxDlZUPJP
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>L2YkyjpQska1TB5nsx3eyFQX/fuOwXf+GS0iTu2OCO0hroHh2YL7KqLCg1NAdlQO
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>/sVBbfxTpQKBgDiNF6G8MpNYBt4dP/NTYlxQK+snYMcYrgjNmyT2PhAlBW68Bl6x
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>Z9ExX1bcIbRHb9qX5hhswS27xlqn2ZiKeHuQqS6EJFpsygJAkun78AtOlZkWPBQd
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>IIZYp/4t7manB/AOSzIcErfHOOCct8JzhsIOycqSm5qtgOk6yH8oocq9AoGBALn+
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a>Oik1pqViliccLv+EPqKpPbAiL2hv9Vr0j4a7C71is2BvSg6UtmAyR9Eh5yL5ZvEn
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a>aDv/VEvoRzqnj9Mq55q8yQqr2BhvGgBVNeNM/cJGi5xCKhdsXrZV0hlKAhDZv57V
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a>PEfCnsLgKpIKNicmZ6AqCDHicYYZmqvCbEC2Gj5FAoGAV2iNYk59Tmn1H6NmLkbK
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a>9/0WLVZUaXlNxQjDY8qZvBh8mjMCJ22dw8HrOSpfmKCnBIbEfJdJq96cBLsSJJpE
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a>UAFBQxtgulqyxxE6bymT/mgl/tC/8R9bf0UVj/OL9s0QW3tBHV/VwiriB6X2ZXhw
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a>2uUI9L2pKFETYYRFuI9S6Vc=
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a>-----END PRIVATE KEY-----
+</code></pre></div></td></tr></table></div>
+<p>And a public key that we can distribute. </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>Public Key:
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a> -----BEGIN PUBLIC KEY-----
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0P0iCBgEthO3bHszilv+
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>XF5b/5iUZRhxKN0USgbk9cVLRmtxgEUFVWHOtjp0A06plbMwlbgVn1K16RFo8Str
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>aVVG6yong9JgWkYx4PkuD0rfQHet2cHoxQ77A54cUXfdLTbXjnkzQM6GHiuDHQ4S
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>W1c7cIvqBdzE3f2nJkoOxUNdDqYj/YbOzZKnRb1BbsdrhMg29x3zBDboN/dLVMtc
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>Unk9Opp1MeDwu1iudmHVysiNIR48UNvDhcqUT50RIoig7zyv9P5NODGSCIz7urQ4
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>4aiIi0kcAzwpZRhJUBMq33q9ajXjZQrQIWTXrvBZQqK+Tz6LisQD3E9VU8Ax7DOY
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>oQIDAQAB
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>-----END PUBLIC KEY-----
+</code></pre></div></td></tr></table></div>
+<p>All in all, RSA is a solid cryptographic mechanism that is widely used in different kinds of environments, and thus standardized.  Furthermore, it&rsquo;s dependency on difficult mathematical security is very beneficial, making it more resistant to all kinds of attacks.  </p>
+<hr />
+<h2 id="ecc">ECC<a class="headerlink" href="#ecc" title="Permanent link">&para;</a></h2>
+<p>Elliptic Curve Cryptography (ECC) is another type of cryptographic method that uses the mathematics of elliptic curves to secure communication. It involves generating public and private key pairs just like RSA, but based on points on these curves, making it computationally efficient compared to other traditional methods. <br />
+ECC can be used for key exchange and digital signatures in protocols like <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman">ECDH</a> and <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a>. Despite using shorter key lengths, ECC provides robust security, and its resistance to quantum attacks makes it a valuable choice for secure communication and authentication in various applications. But how does this work?</p>
+<p>First, let&rsquo;s talk about elliptic curves. </p>
+<blockquote>
+<p>Elliptic curves in cryptography specifically is an approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields, as quoted by Wikipedia. I don&rsquo;t want to get too much into Elliptic curves and finite fields as they go more in-depth in mathematics, which isn&rsquo;t my strongest point. </p>
+</blockquote>
+<p>Elliptic curves in cryptography are in many cases used by combining a key agreement and a symmetric encryption scheme. The use of elliptic curves is a bit of a controversy, considering that it was included as a NIST standard due to the influence of NSA. In 2013, which was around 7 years after wide spread of the use of elliptic curves in cryptography, RSA security recommended its customers discontinue using software based on a specific method in elliptic curves called &ldquo;Dual_EC_DRBG&rdquo; due to an exposure of this as &ldquo;an NSA undercover operation&rdquo;, including many other cryptography experts agreeing on non-elliptic curve groups being preferential over elliptic curve based encryption. </p>
+<h3 id="testing_2">Testing<a class="headerlink" href="#testing_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">ec</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># Generating ECC key pair</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="n">private_key</span> <span class="o">=</span> <span class="n">ec</span><span class="o">.</span><span class="n">generate_private_key</span><span class="p">(</span><span class="n">ec</span><span class="o">.</span><span class="n">SECP256R1</span><span class="p">(),</span> <span class="n">default_backend</span><span class="p">())</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="n">public_key</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">public_key</span><span class="p">()</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1"># Serializing</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="n">public_pem</span> <span class="o">=</span> <span class="n">public_key</span><span class="o">.</span><span class="n">public_bytes</span><span class="p">(</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a>    <span class="n">encoding</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">PEM</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>    <span class="nb">format</span><span class="o">=</span><span class="n">serialization</span><span class="o">.</span><span class="n">PublicFormat</span><span class="o">.</span><span class="n">SubjectPublicKeyInfo</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Public Key:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">public_pem</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="c1"># Signing message</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="n">message</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;Hello, ECC!&quot;</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="n">signature</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">ec</span><span class="o">.</span><span class="n">ECDSA</span><span class="p">())</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signature:&quot;</span><span class="p">,</span> <span class="n">signature</span><span class="o">.</span><span class="n">hex</span><span class="p">())</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="c1"># Verifying signature</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>    <span class="n">public_key</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">ec</span><span class="o">.</span><span class="n">ECDSA</span><span class="p">())</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signature is valid.&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signature is invalid:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>In the beginning, an ECC key pair is generated using the SECP256R1 elliptic curve.</p>
+<h2 id="sha">SHA<a class="headerlink" href="#sha" title="Permanent link">&para;</a></h2>
+<p>We&rsquo;ve come across SHA multiple times in now, and now is the time for a deep-dive. </p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <h2 id="afterword">Afterword<a class="headerlink" href="#afterword" title="Permanent link">&para;</a></h2>
 <p>Honestly speaking, this topic is incredibly difficult to understand, and I am sure I missed a lot of key parts on how certain mechanics work. However, diving too deep into this rabbit hole is not the main purpose of this assignment, and will only worsen my understanding of this topic at this point in time. With that being said, I think this is a very interesting subject, but it requires a significant amount of time in order to research this, as there is a lot to discuss. I hope I provided some entry-level explanations on cryptography in this document.</p>
@@ -1795,8 +2136,17 @@ The most obvious bonus point is its speed of encryption. However, it might be mo
 <li>Information about CTS - <a href="https://en.wikipedia.org/wiki/Ciphertext_stealing">https://en.wikipedia.org/wiki/Ciphertext_stealing</a></li>
 <li>Information about RSA - <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)</li>
 <li>More information about RSA - <a href="https://www.youtube.com/watch?v=ZPXVSJnDA_A">https://www.youtube.com/watch?v=ZPXVSJnDA_A</a></li>
+<li>Key size selection RSA - <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf</a> (page 65)</li>
+<li>Information about Hamming weight: <a href="https://en.wikipedia.org/wiki/Hamming_weight">https://en.wikipedia.org/wiki/Hamming_weight</a></li>
+<li>Public exponentiation: <a href="https://crypto.stackexchange.com/questions/22437/rsa-public-key-exponent-generation-confusion">https://crypto.stackexchange.com/questions/22437/rsa-public-key-exponent-generation-confusion</a> and <a href="https://stackoverflow.com/questions/6098381/what-are-common-rsa-sign-exponent">https://stackoverflow.com/questions/6098381/what-are-common-rsa-sign-exponent</a></li>
+<li>Information about known Fermat primes: <a href="https://crypto.stackexchange.com/questions/3110/impacts-of-not-using-rsa-exponent-of-65537">https://crypto.stackexchange.com/questions/3110/impacts-of-not-using-rsa-exponent-of-65537</a></li>
+<li>RSA key size standards: <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-78-5.ipd.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-78-5.ipd.pdf</a></li>
+<li>PKCS#8: <a href="https://en.wikipedia.org/wiki/PKCS_8">https://en.wikipedia.org/wiki/PKCS_8</a></li>
+<li>Information about ECC: <a href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography">https://en.wikipedia.org/wiki/Elliptic-curve_cryptography</a></li>
+<li>Information about Elliptic curves: <a href="https://en.wikipedia.org/wiki/Elliptic-curve_cryptography">https://en.wikipedia.org/wiki/Elliptic-curve_cryptography</a></li>
+<li>RSA Security as a company: <a href="https://en.wikipedia.org/wiki/RSA_Security">https://en.wikipedia.org/wiki/RSA_Security</a></li>
+<li></li>
 </ul>
-<p>Key size selection rsa - <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf</a> (page 65)</p>
 
 
 
@@ -1817,7 +2167,7 @@ The most obvious bonus point is its speed of encryption. However, it might be mo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-03T23:15:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-11T23:24:23+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-11</span>
   </span>
 
     
