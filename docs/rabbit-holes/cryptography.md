@@ -372,60 +372,151 @@ All in all, RSA is a solid cryptographic mechanism that is widely used in differ
 ---
 
 
-## ECC
+## What is ECC?
 
-Elliptic Curve Cryptography (ECC) is another type of cryptographic method that uses the mathematics of elliptic curves to secure communication. It involves generating public and private key pairs just like RSA, but based on points on these curves, making it computationally efficient compared to other traditional methods. 
-ECC can be used for key exchange and digital signatures in protocols like [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) and [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). Despite using shorter key lengths, ECC provides robust security, and its resistance to quantum attacks makes it a valuable choice for secure communication and authentication in various applications. But how does this work?
+Elliptic Curve Cryptography (ECC) is another type of cryptographic method that uses the mathematics of elliptic curves to secure communication. It involves generating public and private key pairs just like RSA, but based on points on these curves, making it computationally efficient compared to other traditional methods. This is because while it provides similar security to RSA, it has smaller key sizes.
+
+> ECC can be used for key exchange and digital signatures in protocols like [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) and [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). 
+
+Despite using shorter key lengths, ECC provides robust security, and its resistance to quantum attacks makes it a valuable choice for secure communication and authentication in various applications. But how does this work?
+
+### How does it work?
 
 First, let's talk about elliptic curves. 
 > Elliptic curves in cryptography specifically is an approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields, as quoted by Wikipedia. I don't want to get too much into Elliptic curves and finite fields as they go more in-depth in mathematics, which isn't my strongest point. 
 
-Elliptic curves in cryptography are in many cases used by combining a key agreement and a symmetric encryption scheme. The use of elliptic curves is a bit of a controversy, considering that it was included as a NIST standard due to the influence of NSA. In 2013, which was around 7 years after wide spread of the use of elliptic curves in cryptography, RSA security recommended its customers discontinue using software based on a specific method in elliptic curves called "Dual_EC_DRBG" due to an exposure of this as "an NSA undercover operation", including many other cryptography experts agreeing on non-elliptic curve groups being preferential over elliptic curve based encryption. 
+Elliptic curves in cryptography are in many cases used by combining an agreement on a key and a symmetric encryption scheme. The use of elliptic curves is a bit of a controversy, considering that it was included as a NIST standard due to the influence of NSA. In 2013, which was around 7 years after wide spread of the use of elliptic curves in cryptography, RSA security recommended its customers discontinue using software based on a specific method in elliptic curves called "Dual_EC_DRBG due to an exposure of this as "an NSA undercover operation", including many other cryptography experts agreeing on non-elliptic curve groups being preferential over elliptic curve based encryption. 
+
+I don't want to get into the mathematics too much; that goes beyond me, but we can do it another way.
+
+Elliptic curves can be show-cased using actual curves. I think it is pointless to write it all down here, so let's appreciate the effort of making this video by watching this short segment on it: 
+https://youtu.be/gAtBM06xwaw&t=366
+
+
+It is quite difficult to find code examples or other useful elliptic curve cryptography use cases. Even when I try using AI to get some results, it fails to do so. The difficulty of finding examples of the "finite" ECC implementations is due to multiple reasons:
+- Elliptic curves are extremely complicated, and very few people understand it and can do the math
+- Many of them are patented, unlike using it with the well known Diffie–Hellman protocol
+- Furthermore, it is heavily depended on a good randomness. ECC fails on insufficient randomness
+
+ECDH is actually a pretty important piece of information. ECDH stands for Elliptic Curve Diffie Helman, which takes a "Diffie Helman approach" to and with elliptic curves.
+
+#### What is the Diffie–Hellman key exchange protocol?
+
+Diffie–Hellman key exchange is one of the most well known key exchange protocols at this point in time. Reading the name however, this protocol does not appear to exchange actual keys. In actuality, some public variables are exchanged, which are then combined with some private variables that are kept hidden, enabling both parties of the variables to create the same key.
+
+Let's go over it in a simple example:
+
+If we take Alice and Bob as parties that want to create a way for communication, they have to share and agree on some public variables first. 2 variables are out in the open: `G` and `n`, where `G` is the generator and `n` is the 
+Aside from that, both Alice and bob both generate a private key locally, let's call them `a` and `b` respectively. Private keys are never shared with anyone. 
+Starting with Alice: Alice takes her private key and combines it with `G`. Bob does the exact same, but for his own private key. We now have two different variables, `aG` and `bG`. Then `aG` and `bG` are exchanged with Alice and Bob.
+Using letters only, it might look simple, but when you switch them for actual numbers (preferably big ones), it get's really difficult to find out some numbers. 
+As an outsider, you know what `G` is, as it is public. But knowing what `aG` is, you'd have to know what `a` initially was, which is quite difficult to figure out.
+In the last bit, Alice takes Bob's public message, and adds her private key, which is `a`. Bob will do the same, but the other way around, of course. Alice and Bob both made `abG`, as they add their own private `a` and `b` to the sent public key. Now, Alice and Bob both have the same key. 
+
+
+#### What are Elliptic Curves?
+
+Now, how does this apply to the combination with elliptic curves?
+
+ECDH and ECC are closely intertwined concepts, as ECC provides the mathematical foundation for ECDH. This means that ECDH uses the above explanation about Diffie-Helman, but uses mathematical operations from the elliptic curve cryptography process.
+As mentioned before, ECC utilizes the algebraic structure of elliptic curves over finite fields to perform cryptographic operations. These curves offer several advantages over traditional public-key cryptography based on prime numbers. 
+These curves can be mapped out like so:
+
+![[elliptic-curve-preset.png]]
+
+So in this example, a curve is drawn over a finite field. `A` and `B` are two points on the elliptic curve. When we draw a straight line from point `A` to point `B`, the line will intersect the curve in at most one place. When it reaches to end of the curve, the line will flip itself over the X-axis and make a line to the next point.
+
+![[elliptic-curve-point-c.png]]
+
+Now that we know where `C` is, we make a new line with `A` and `C`:
+
+![[elliptic-c-and-a.png]]
+
+We flip it over the X-axis again to create a new point called `D`. This process starts over and over again, until we get really deep into the curve.
+
+![[elliptic-curve-d.png]]
+
+At a certain point, you come to understand that it becomes really difficult to figure out where you started out, even we do not use actual numbers in this example.
+
+![[elliptic-d-and-e.png]]
+
+This approach can be quite similar to exponents in a way, where even if you know what the values of point `A` and point `E` are from the pictures above, it is really difficult to figure out how it got there, or in other words: how many times it did the elliptic curve operation. 
+I would highly suggest you to view the full video that is linked above in order to understand the mathematical operations.
+
+
+### My understanding on ECC
+
+The process of understanding the concept is fun, but getting into the complexity of mathematical operations at this point in time is not working in my favour to understand ECC as a whole right now. 
+If I could rephrase it with Alice and Bob, I would say that Alice and Bob would agree on a base point on a common variant of an elliptic curve, like the one we see above. 
+
+
+
+## What is SHA?
+
+
+We've come across SHA multiple times in now, so now is the time for a deep-dive. 
+SHA stands for Secure Hash Algorithms. Hash functions are algorithms that take an input or message and produce a fixed-size string of characters, which is typically a hexadecimal number, but it depends on the application.
 
 ### Testing
 
 ```python
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import ec
-from cryptography.hazmat.backends import default_backend
+import hashlib
 
-# Generating ECC key pair
-private_key = ec.generate_private_key(ec.SECP256R1(), default_backend())
-public_key = private_key.public_key()
+data = b"Test string for our SHA."
 
-# Serializing
-public_pem = public_key.public_bytes(
-    encoding=serialization.Encoding.PEM,
-    format=serialization.PublicFormat.SubjectPublicKeyInfo
-)
+# Create a new SHA-256 hash object
+hash = hashlib.sha256()
 
-print("Public Key:\n", public_pem.decode())
+hash.update(data)
 
-# Signing message
-message = b"Hello, ECC!"
-signature = private_key.sign(message, ec.ECDSA())
+hashed_message = hash.hexdigest()
 
-print("Signature:", signature.hex())
-
-# Verifying signature
-try:
-    public_key.verify(signature, message, ec.ECDSA())
-    print("Signature is valid.")
-except Exception as e:
-    print("Signature is invalid:", e)
+print(hashed_message)
 
 ```
 
+I use `hashlib` instead of `cryptography` because it is just easier. Sorry about that.
+The SHA-256 hash object is created using `hashlib.sha256()`. Then, we update the hash object with the input data using the `update()` method. The `update()` function can merge multiple update functions together, because it sees repeated calls as one single call.
+Finally, we obtain the hexadecimal form of the hash using the `hexdigest()` method and put it in a variable, which we then print.
 
-In the beginning, an ECC key pair is generated using the SECP256R1 elliptic curve.
+
+The SHA-256 hash of our message is: 
+```
+0c866bf0d3a8a5f58ededd188f905d936bc1714608c12ddde32694d0d4486837
+```
+
+It will remain the same, no matter how many times you run the script, unless you change the data.
 
 
-## SHA
+### How does SHA work under the hood?
 
-We've come across SHA multiple times in now, and now is the time for a deep-dive. 
+The example makes use of the `hashlib` library, which takes care of the details of SHA-256, but we'll zoom out a bit for now.
+
+#### Versions of SHA
+
+In a nutshell, a hash function takes a string and turns it, usually, in a fixed length bit-string of randomness. However, this is SHA works in similar cases. There are a couple of SHA versions out there:
+
+**SHA-1**
+SHA-1, which first appeared in 1995 following a revision from SHA-0 that existed since 1993, has a 160 bit hash value in length. It has been slowly declared as insecure since 2005, and had a formal goodbye wave by NIST in 2011. Despite it's deprecation, even by bigger tech companies, it's still widely used. However, support has been dropped steadily over the years.
+
+**SHA-2**
+SHA-2, designed by the NSA and published in 2001, has seen a lot of changes when compared to its parent SHA-1. SHA-2 houses 6 hash functions with hash values of 224, 256, 384 or 512 bits in length: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. SHA-256 and SHA-512 are very popular. It's pretty robust, but not entirely immune to several attacks like length extension attacks and preimage attacks, although only partial. This is often done through Finding likenesses between certain values or straight-up guessing numbers. It is currently used in products like TLS, SSL, PGP, and SSH, among others.
+
+**SHA-3** 
+SHA-3 was released by NIST in 2015. Although part of the same series, its internal structure is fundamentally different from SHA-1 and SHA-2. Where these 2 were more like MD5-type structures, SHA-3 uses and has some proposals for additions that make it more robust, flexible, and more secure in general. It is supposed to be a direct replacement, but we'll put that to rest for now, as it is not as known and widespread as SHA-2. It is, however, already supported by numerous cryptography libraries.
+
+
+All variants of the SHA algorithms are one-way hash functions. One-way hash functions are mathematically easy to compute one way, but not the other way back. I'll tell you something more; without knowing the algorithm used, there is no way to to reverse the hash.
+
+Now, time to shift back to our example and SHA-256. SHA-256 works with bit arrays and starts starts with a set of eight 32-bit initial hash values, which are randomly chosen. 
+The input message, in our example `data`, is padded to a multiple of the block size, which would be 512 bits for SHA-256; each block is 512 bits long.
+For each block, 64 rounds of processing are performed. Each round involves a series of complex calculations that combine the current hash values with the contents of the then current block. After each round, intermediate hash values are updated based on the results of the calculations, just like with the `update()` function we saw in our example. Finally, when all blocks have been processed, the final hash will be calculated using all intermediate hash values using a mathematical formula. This final hash is a unique 256-bit string, representing the original input data.
+
+
 
 
 ## Conclusion
+Cryptography is essential for keeping data safe on the internet. AES, RSA, ECC, and SHA are powerful algorithms that protect data from unauthorized access and manipulation, but can have their flaws if implemented incorrectly. AES encrypts and decrypts data efficiently, RSA verifies identities and secures communications, ECC offers smaller key sizes for faster processing, and SHA generates unique fingerprints for data integrity. I hope this document was helpful in any way.
 
 
 
@@ -434,7 +525,9 @@ We've come across SHA multiple times in now, and now is the time for a deep-dive
 Honestly speaking, this topic is incredibly difficult to understand, and I am sure I missed a lot of key parts on how certain mechanics work. However, diving too deep into this rabbit hole is not the main purpose of this assignment, and will only worsen my understanding of this topic at this point in time. With that being said, I think this is a very interesting subject, but it requires a significant amount of time in order to research this, as there is a lot to discuss. I hope I provided some entry-level explanations on cryptography in this document.
 
 
+
 ---
+
 ## Sources
 
 - NIST's Cryptographic Hash functions, encryption algorithms, and keys - https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf (page 40) 
@@ -455,7 +548,17 @@ Honestly speaking, this topic is incredibly difficult to understand, and I am su
 - Information about ECC: https://en.wikipedia.org/wiki/Elliptic-curve_cryptography
 - Information about Elliptic curves: https://en.wikipedia.org/wiki/Elliptic-curve_cryptography
 - RSA Security as a company: https://en.wikipedia.org/wiki/RSA_Security
-- 
+- More on ECC: https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography
+- SHA: https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
+- python cryptography: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/utils/
+- Information on the SHA algorithm: https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
+- Hashlib: https://cryptography.io/en/latest/hazmat/primitives/asymmetric/utils/#cryptography.hazmat.primitives.asymmetric.utils.Prehashed and https://docs.python.org/3/library/hashlib.html#hashlib.sha256
+- SHA-1: https://en.wikipedia.org/wiki/SHA-1
+- SHA-2: https://en.wikipedia.org/wiki/SHA-2
+- SHA-3: https://en.wikipedia.org/wiki/SHA-3
+- Information on MD5 hashing: https://en.wikipedia.org/wiki/MD5
+- IETF (section 4): https://www.ietf.org/rfc/rfc6234.txt
+- NIST SHS on SHA-256 functions (page 15): https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
 
 
 
