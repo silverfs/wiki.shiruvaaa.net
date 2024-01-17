@@ -8,3 +8,4 @@ It is a website based on Material theme, complete with a search bar. Checkout th
 
 
 If you want to use this template, I highly suggest you to go to the original repository.
+MkDocs documentation can be found [here](https://squidfunk.github.io/mkdocs-material/getting-started/).
