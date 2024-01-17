@@ -105,7 +105,7 @@ From [_Wikipedia_](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#
 > "The simplest (and not to be used anymore) of the encryption modes is the **electronic codebook** (ECB) mode (named after conventional physical [codebooks](https://en.wikipedia.org/wiki/Codebook "Codebook")). The message is divided into blocks, and each block is encrypted separately."
 
 
-!!!  warning
+!!! warning
 	Although it is generally not recommended to use this mode of encryption due to its lack of variability and it not being suitable for encrypting data in general any longer, I will use it as a simplified approach to showcase how cipher blocks work. <br>
 	The ECB method lacks diffusion (hiding the plaintext statistics by spreading it over a larger area of ciphertext). Because ECB encrypts identical plaintext blocks of data into identical ciphertext blocks as mentioned earlier, it does not hide patterns well, making it not recommended for use in cryptographic protocols.
 
