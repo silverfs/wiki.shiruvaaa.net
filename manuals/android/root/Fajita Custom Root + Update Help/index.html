@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../../assets/img/catblush.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
     
     
       
@@ -58,17 +58,15 @@
     
     
    <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1332,25 +1330,32 @@
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>I don&rsquo;t know why, but this guide only works with Linux. Windows will not work with this device!</p>
+<p>Using <code>adb</code> on Windows doesn&rsquo;t seem to work with this guide. Please use Linux (or WSL - not tested) to patch and re-root your device.</p>
 </div>
 <p><br></p>
 <h1 id="how-to-re-root-after-update">How to Re-Root after update<a class="headerlink" href="#how-to-re-root-after-update" title="Permanent link">&para;</a></h1>
+<p>This guide is intended for a rooted Oneplus 6T (fajita) running LineageOS 19/20 with Magisk.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Make sure you have the following installed on your computer:<br />
-- adb<br />
-- python =&lt; 3</p>
-<p>Make sure your phone already has the Magisk application. Also, make sure you have installed the update and rebooted the device using the default method before you follow the steps below.</p>
+- <a href="https://developer.android.com/tools/adb">adb</a><br />
+- <a href="https://www.python.org/">Python</a> =&lt; 3</p>
+<p>Make sure your phone already has the Magisk application. Also, make sure you have installed the update and rebooted the device using the default method before you follow the steps below. If Magisk has an update on its <br />
+application, don&rsquo;t update just yet and read the steps below first.</p>
+<p>It is highly advised to read everything carefully before going along with the steps.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There is new repo by LineageOS called <a href="https://github.com/LineageOS/android_tools_extract-utils">android_tools_extract-utils</a>, and is here to replace the <code>update-payload-extractor</code> in the older script due to some licensing stuff described in <a href="https://github.com/LineageOS/scripts/commit/09efdf2c18180cc91f74659bf864a20b241f88aa">this commit</a>. I have not tested this out yet, so as long as these steps still work without a problem, I won&rsquo;t update this page yet.</p>
+</div>
 <p><br></p>
 <hr />
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Download <a href="https://github.com/LineageOS/scripts">LineageOS/scripts</a> off of Github.</li>
-<li>Install the <a href="https://download.lineageos.org/fajita">latest update</a> of LineageOS.</li>
-<li>Extract <code>payload.bin</code> from the .zip and move it to the root directory of the downloaded repo (LineageOS/scripts).</li>
+<li>Download this specific commit of <a href="https://github.com/LineageOS/scripts/tree/dd225e1cebc81f693ac1b981ac853cf819321b49">LineageOS/scripts</a> from GitHub which has the update-payload-extractor script.</li>
+<li>Download the <a href="https://download.lineageos.org/fajita">latest update</a> of LineageOS and store it somewhere on your PC.</li>
+<li>Extract <code>payload.bin</code> from the LineageOS update .zip and move it to the root directory of the downloaded repo (LineageOS/scripts).</li>
 <li>In that root directory, execute the following command:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>python<span class="w"> </span>./update-payload-extractor/extract.py<span class="w"> </span>payload.bin<span class="w"> </span>--output_dir<span class="w"> </span>./output
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>python3<span class="w"> </span>./update-payload-extractor/extract.py<span class="w"> </span>payload.bin<span class="w"> </span>--output_dir<span class="w"> </span>./output
 </code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1376,16 +1381,23 @@
 <p>After it&rsquo;s done, pull your patched image and flash the magisk_patched file:</p>
 </li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>adb pull /sdcard/Download/magisk_patched-25200-&lt;SOME-STRING-HERE&gt;.img
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>adb pull /sdcard/Download/magisk_patched-&lt;SOME-STRING-HERE&gt;.img
 </code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If the Magisk application on your Oneplus 6T needs an update, this is the part where you can update it safely. Do so <em>before</em> booting into fastboot.</p>
+</div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>adb reboot fastboot
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>fastboot flash --slot=all boot magisk_patched-&lt;SOME-STRING-HERE&gt;.img
 </code></pre></div></td></tr></table></div>
 <ol>
 <li>Finally, reboot the device through the Device&rsquo;s screen. </li>
+<li>Check the Magisk app on full root coverage and double-check if everything else works as well.</li>
 </ol>
-<p><br><br />
+<p><br></p>
+<p>That should be it for now.<br />
+Happy tinkering ✨<br />
 <br></p>
 <h2 id="uncategorized-links">Uncategorized links:<a class="headerlink" href="#uncategorized-links" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1414,7 +1426,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-03T20:26:53+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-27T15:10:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-27</span>
   </span>
 
     
@@ -1534,10 +1546,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "toc.follow", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "toc.follow", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c18c5fb9.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       
