@@ -131,13 +131,13 @@ extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js 
 
 
-extra:
-  consent:
-    title: Cookie consent 🍪
-    actions:
-      - reject
-      - accept
-      - manage
-    description: >- 
-      We use cookies to make connections to services like Github in order to provide cool links and visuals. <br>
-      Click on "Manage settings" to view what this wiki connects to.
+#extra:
+#  consent:
+#    title: Cookie consent 🍪
+#    actions:
+#      - reject
+#      - accept
+#      - manage
+#    description: >- 
+#      We use cookies to make connections to services like Github in order to provide cool links and visuals. <br>
+#      Click on "Manage settings" to view what this wiki connects to.
